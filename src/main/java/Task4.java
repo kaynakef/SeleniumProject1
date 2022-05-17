@@ -68,22 +68,23 @@ public class Task4 {
         List<WebElement> orderConfirm= driver.findElements(By.xpath("/html/body/form/table/tbody/tr/td[2]/div[2]/div[3]/table/tbody/tr[2]/td"));
 
         List<String> confirmation = new ArrayList<>();
+        confirmation.add(" ");
         confirmation.add(customerName);
         confirmation.add("ScreenSaver");
         confirmation.add("5");
+        confirmation.add("05/17/2022");
         confirmation.add(street);
         confirmation.add(city);
+        confirmation.add(" ");
         confirmation.add(zip);
         confirmation.add("MasterCard");
         confirmation.add(card);
         confirmation.add("03/21");
 
-        for (int i =1 ; i < orderConfirm.size() ; i++) {
 
-          if ( orderConfirm.get(i).getText().equals(confirmation.get(i-1))){
-              if(orderConfirm.get(i).getText().equals("05/17/2022")){
-                  continue;
-              }
+        for (int i =1 ; i < orderConfirm.size()-1 ; i++) {
+
+          if ( orderConfirm.get(i).getText().equals(confirmation.get(i))){
 
               System.out.println("True");
           }
