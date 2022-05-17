@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import sun.plugin.net.protocol.jar.CachedJarURLConnection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Task4 {
@@ -24,23 +25,31 @@ public class Task4 {
         WebElement quantity= driver.findElement(By.name("ctl00$MainContent$fmwOrder$txtQuantity"));
         quantity.sendKeys("5");
 
+
+        String customerName="Techtorial Academy";
+        String street="2200 E devon";
+        String city="Des Plaines";
+        String zip= "60018";
+        String card="444993876233";
+
+
         WebElement name= driver.findElement(By.name("ctl00$MainContent$fmwOrder$txtName"));
-        name.sendKeys("Techtorial Academy");
+        name.sendKeys(customerName);
 
-        WebElement street= driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox2"));
-        street.sendKeys("2200 E devon");
+        WebElement streetE= driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox2"));
+        streetE.sendKeys(street);
 
-        WebElement city= driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox3"));
-        city.sendKeys("Des Plaines");
+        WebElement cityE= driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox3"));
+        cityE.sendKeys(city);
 
-        WebElement zip= driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox5"));
-        zip.sendKeys("60018");
+        WebElement zipE= driver.findElement(By.name("ctl00$MainContent$fmwOrder$TextBox5"));
+        zipE.sendKeys(zip);
 
-        WebElement card= driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_1"));
-        card.click();
+        WebElement cardE= driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_1"));
+        cardE.click();
 
         WebElement cardid = driver.findElement((By.id("ctl00_MainContent_fmwOrder_TextBox6")));
-        cardid.sendKeys("444993876233");
+        cardid.sendKeys(card);
 
         WebElement date= driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox1"));
         date.sendKeys("03/21");
@@ -56,11 +65,35 @@ public class Task4 {
         WebElement viewOrders=driver.findElement(By.xpath("//a[@href='Default.aspx']"));
         viewOrders.click();
 
-        List<WebElement> orderConfirm= driver.findElements(By.xpath("/html/body/form/table/tbody/tr/td[2]/div[2]/div[3]/table/tbody/tr[2]"));
+        List<WebElement> orderConfirm= driver.findElements(By.xpath("/html/body/form/table/tbody/tr/td[2]/div[2]/div[3]/table/tbody/tr[2]/td"));
 
-        for (WebElement e: orderConfirm){
-            System.out.println(e.getText());
+        List<String> confirmation = new ArrayList<>();
+        confirmation.add(customerName);
+        confirmation.add("ScreenSaver");
+        confirmation.add("5");
+        confirmation.add(street);
+        confirmation.add(city);
+        confirmation.add(zip);
+        confirmation.add("MasterCard");
+        confirmation.add(card);
+        confirmation.add("03/21");
+
+        for (int i =1 ; i < orderConfirm.size() ; i++) {
+
+          if ( orderConfirm.get(i).getText().equals(confirmation.get(i-1))){
+              if(orderConfirm.get(i).getText().equals("05/17/2022")){
+                  continue;
+              }
+
+              System.out.println("True");
+          }
+          else
+              System.out.println("False");
+
         }
+
+
+
 
 // ADDING VALIDATE PART HERE
 

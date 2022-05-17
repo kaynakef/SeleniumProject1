@@ -26,7 +26,6 @@ public class Task2 {
             System.out.println("List of Products IS NOT selected");
         }
 
-
         String expectedHeader = "List of Products";
         String actualHeader = driver.findElement(By.xpath("//h2")).getText();
         if (expectedHeader.equals(actualHeader)){
