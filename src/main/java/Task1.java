@@ -34,6 +34,7 @@ public class Task1 {
         }
         Thread.sleep(5000);
         driver.quit();
+        System.out.println("Hello world");
 
 
     }
